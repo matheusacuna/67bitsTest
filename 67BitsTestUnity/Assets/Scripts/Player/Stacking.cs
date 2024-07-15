@@ -14,8 +14,8 @@ public class Stacking : MonoBehaviour
 
     void Start()
     {
-        //stackingTransform.rotation = Quaternion.Euler(-90, stackingTransform.eulerAngles.y, 130);
-        cubes.Add(gameObject.transform);
+        stackingTransform.rotation = Quaternion.Euler(-90, stackingTransform.eulerAngles.y, 90f);
+        cubes.Add(stackingTransform.transform);
     }
 
     private void Update()
@@ -23,7 +23,7 @@ public class Stacking : MonoBehaviour
         StackingObjects();
     }
 
-    public void StackingObjects()
+    private void StackingObjects()
     {
         if(cubes.Count > 1)
         {
@@ -46,19 +46,20 @@ public class Stacking : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("enemies"))
-        {
-            other.transform.parent = null;
-            other.gameObject.GetComponent<Collider>().isTrigger = true;
-            other.tag = gameObject.tag;
-            cubes.Add(other.transform);
 
-            if (cubes.Count > 1)
-            {
-                other.transform.rotation = Quaternion.Euler(-90, other.transform.eulerAngles.y, 130);
-            }
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("enemies"))
+    //    {
+    //        other.transform.parent = null;
+    //        other.gameObject.GetComponent<Collider>().isTrigger = true;
+    //        other.tag = gameObject.tag;
+    //        cubes.Add(other.transform);
+
+    //        if (cubes.Count > 1)
+    //        {
+    //            other.transform.rotation = Quaternion.Euler(-90, other.transform.eulerAngles.y, 90);
+    //        }
+    //    }
+    //}
 }
