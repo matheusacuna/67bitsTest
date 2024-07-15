@@ -5,32 +5,43 @@ using UnityEngine;
 
 public class Stacking : MonoBehaviour
 {
-    // Array para armazenar os filhos
     public GameObject[] children;
     public List<Transform> cubes = new List<Transform>();
     public Transform stackingTransform;
     public float distance;
     public float swipeSpeed;
+    public float rotationSpeed = 5f; // Velocidade de rotação
 
     void Start()
     {
-        cubes.Add(stackingTransform.transform);
+        //stackingTransform.rotation = Quaternion.Euler(-90, stackingTransform.eulerAngles.y, 130);
+        cubes.Add(gameObject.transform);
     }
 
     private void Update()
     {
-        if (cubes.Count > 1)
+        StackingObjects();
+    }
+
+    public void StackingObjects()
+    {
+        if(cubes.Count > 1)
         {
             for (int i = 1; i < cubes.Count; i++)
             {
                 var FirstCube = cubes.ElementAt(i - 1);
                 var SectCube = cubes.ElementAt(i);
 
+                // Ajustar a posição dos cubos
                 SectCube.position = new Vector3(
-                                         Mathf.Lerp(SectCube.position.x, FirstCube.position.x, swipeSpeed * Time.deltaTime),
-                                        FirstCube.position.y + 1.5f, // Ajuste para colocar o cubo em cima do cubo anterior
-                                        Mathf.Lerp(SectCube.position.z, FirstCube.position.z, swipeSpeed * Time.deltaTime));
-                SectCube.rotation = Quaternion.Euler(-90, 90, stackingTransform.eulerAngles.z);
+                    Mathf.Lerp(SectCube.position.x, FirstCube.position.x, swipeSpeed * Time.deltaTime),
+                    FirstCube.position.y + 1f, // Ajuste para colocar o cubo em cima do cubo anterior
+                    Mathf.Lerp(SectCube.position.z, FirstCube.position.z, swipeSpeed * Time.deltaTime));
+
+                // Ajustar a rotação dos cubos para ficarem na mesma direção do player, um por um
+
+                Quaternion targetRotation = FirstCube.rotation;
+                SectCube.rotation = Quaternion.Lerp(SectCube.rotation, targetRotation, rotationSpeed * Time.deltaTime);
             }
         }
     }
@@ -40,10 +51,14 @@ public class Stacking : MonoBehaviour
         if (other.CompareTag("enemies"))
         {
             other.transform.parent = null;
-            //other.gameObject.AddComponent<Rigidbody>().isKinematic = true;
             other.gameObject.GetComponent<Collider>().isTrigger = true;
             other.tag = gameObject.tag;
             cubes.Add(other.transform);
+
+            if (cubes.Count > 1)
+            {
+                other.transform.rotation = Quaternion.Euler(-90, other.transform.eulerAngles.y, 130);
+            }
         }
     }
 }
