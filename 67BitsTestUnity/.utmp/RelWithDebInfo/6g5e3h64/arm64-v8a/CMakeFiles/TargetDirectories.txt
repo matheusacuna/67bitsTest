@@ -1,0 +1,5 @@
+D:/Filizzola/Projects Unity/67bitsTestUnity/67BitsTestUnity/.utmp/RelWithDebInfo/6g5e3h64/arm64-v8a/CMakeFiles/edit_cache.dir
+D:/Filizzola/Projects Unity/67bitsTestUnity/67BitsTestUnity/.utmp/RelWithDebInfo/6g5e3h64/arm64-v8a/CMakeFiles/rebuild_cache.dir
+D:/Filizzola/Projects Unity/67bitsTestUnity/67BitsTestUnity/.utmp/RelWithDebInfo/6g5e3h64/arm64-v8a/FramePacing/CMakeFiles/swappywrapper.dir
+D:/Filizzola/Projects Unity/67bitsTestUnity/67BitsTestUnity/.utmp/RelWithDebInfo/6g5e3h64/arm64-v8a/FramePacing/CMakeFiles/edit_cache.dir
+D:/Filizzola/Projects Unity/67bitsTestUnity/67BitsTestUnity/.utmp/RelWithDebInfo/6g5e3h64/arm64-v8a/FramePacing/CMakeFiles/rebuild_cache.dir

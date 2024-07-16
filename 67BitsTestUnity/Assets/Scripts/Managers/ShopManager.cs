@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-
+using Player;
 
 namespace Managers
 {
@@ -11,18 +11,17 @@ namespace Managers
         public float moneyAmountForLevel;
         public float moneyAmountForNewColor;
         public TextMeshProUGUI moneyAmountText;
-
-        [Header("Feedback Money")]
-        public GameObject feedbackMoney;
+        public TextMeshProUGUI moneyAmountShopText;
 
         [Header("References")]
-        [SerializeField] private StackingManager stackingManager;
+        [SerializeField] private Stacking stackingManager;
         [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
         [SerializeField] private Material[] materialReference;
 
         private void Update()
         {
             moneyAmountText.text = $"${moneyAmount}";
+            moneyAmountShopText.text = $"${moneyAmount}";
         }
 
         public void BuyLevel()
@@ -30,7 +29,7 @@ namespace Managers
             if (moneyAmount >= moneyAmountForLevel)
             {
                 DecrementMoney(moneyAmountForLevel);
-                stackingManager.maxStackLimit++;
+                stackingManager.stackingLimit++;
             }
         }
 

@@ -13,8 +13,14 @@ public class EnemiesController : MonoBehaviour, Idamageble
 
     public void TakeDamage(Transform targetTransform, int damage, float knockBackForce)
     {
+        int currentStackCount = stackingManager.enemiesTransform.Count;
+
+        if (currentStackCount <= stackingManager.stackingLimit ) 
+        {
+            StartCoroutine(StackingEnemies());
+        }
+
         ApplyKnockBack(targetTransform, knockBackForce);
-        StartCoroutine(StackingEnemies());
     }
 
     public void ApplyKnockBack(Transform targetTransform, float knockBackForce)
@@ -37,6 +43,8 @@ public class EnemiesController : MonoBehaviour, Idamageble
         yield return new WaitForSeconds(1);
 
         vfx.SetActive(true);
+
+        stackingManager.IncrementStackingAmountUI();
 
         GetComponent<BoxCollider>().enabled = false;
 

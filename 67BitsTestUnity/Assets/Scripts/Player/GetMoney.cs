@@ -3,7 +3,7 @@ using Player;
 using System.Collections;
 using TMPro;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 namespace Player
 {
@@ -12,6 +12,7 @@ namespace Player
         [Header("Scripts Reference")]
         [SerializeField] private ShopManager shopManager;
         [SerializeField] private Stacking stackingManager;
+        [SerializeField] private Slider delaySlider;
         
         private bool isRemoving = false;
 
@@ -28,11 +29,27 @@ namespace Player
         private IEnumerator RemoveEnemiesWithDelay()
         {
             isRemoving = true;
+            float delay = 1.5f;
 
-            yield return new WaitForSeconds(1.5f);
-            // Enquanto houver mais de um objeto na lista, remova o último com um delay de 1.5 segundos
-            while (stackingManager.enemiesTransform.Count > 1)
+            // Ativa o sliderObject quando o delay começar
+            delaySlider.gameObject.SetActive(true);
+
+            // Enquanto houver objetos na lista, remova o último com um delay
+            while (stackingManager.enemiesTransform.Count > 0)
             {
+                float elapsedTime = 0f;
+
+                // Atualiza o slider enquanto espera 1.5 segundos
+                while (elapsedTime < delay)
+                {
+                    elapsedTime += Time.deltaTime;
+                    delaySlider.value = elapsedTime / delay;
+                    yield return null;
+                }
+
+                // Reseta o slider
+                delaySlider.value = 0f;
+
                 // Acessa o último objeto da lista
                 Transform lastEnemy = stackingManager.enemiesTransform[stackingManager.enemiesTransform.Count - 1];
 
@@ -42,12 +59,11 @@ namespace Player
                 // Destrói o objeto
                 Destroy(lastEnemy.gameObject);
 
-                stackingManager.UpdateStackingAmountUI();
-                shopManager.IncrementMoney(10f);
-
-                // Espera 1.5 segundos antes de continuar
-                yield return new WaitForSeconds(1.5f);
+                stackingManager.DecrementStackingAmountUI();
             }
+
+            // Desativa o sliderObject após o último objeto ser deletado
+            delaySlider.gameObject.SetActive(false);
 
             isRemoving = false;
         }
