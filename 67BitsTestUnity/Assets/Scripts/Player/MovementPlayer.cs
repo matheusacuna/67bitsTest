@@ -32,7 +32,6 @@ namespace Player
             Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
             rb.velocity = moveDirection * moveSpeed;
 
-            // Rotacionar o personagem na direção do movimento
             if (moveDirection != Vector3.zero)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(moveDirection);

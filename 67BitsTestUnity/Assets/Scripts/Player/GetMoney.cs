@@ -1,7 +1,5 @@
 using Managers;
-using Player;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,11 +29,10 @@ namespace Player
             isRemoving = true;
             float delay = 1.5f;
 
-            // Ativa o sliderObject quando o delay começar
             delaySlider.gameObject.SetActive(true);
 
             // Enquanto houver objetos na lista, remova o último com um delay
-            while (stackingManager.enemiesTransform.Count > 0)
+            while (stackingManager.enemiesTransform.Count > 1)
             {
                 float elapsedTime = 0f;
 

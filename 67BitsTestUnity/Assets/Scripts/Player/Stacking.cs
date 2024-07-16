@@ -61,5 +61,10 @@ namespace Player
             currentAmountStacking--;
             amountStacking.text = $"{currentAmountStacking} / {stackingLimit}";
         }
+
+        public void IncrementStackingLimitUI()
+        {
+            amountStacking.text = $"{currentAmountStacking} / {stackingLimit}";
+        }
     }
 }

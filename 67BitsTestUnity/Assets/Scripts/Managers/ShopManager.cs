@@ -30,6 +30,7 @@ namespace Managers
             {
                 DecrementMoney(moneyAmountForLevel);
                 stackingManager.stackingLimit++;
+                stackingManager.IncrementStackingLimitUI();
             }
         }
 

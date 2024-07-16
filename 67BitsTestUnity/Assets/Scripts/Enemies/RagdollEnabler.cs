@@ -18,17 +18,9 @@ public class RagdollEnabler : MonoBehaviour
         rigidBodies = ragdollRoot.GetComponentsInChildren<Rigidbody>();
         joints = ragdollRoot.GetComponentsInChildren<CharacterJoint>();
         colliders = ragdollRoot.GetComponentsInChildren<Collider>();
-
-        if(startRagdoll)
-        {
-            EnableRagdoll();
-        }
-        else
-        {
-            EnableAnimator();
-        }
     }
 
+    //Ativa o efeito de Ragdoll nos inimigos.
     public void EnableRagdoll()
     {
         animator.enabled = false;
@@ -48,6 +40,7 @@ public class RagdollEnabler : MonoBehaviour
         }
     }
 
+    //Desativa o efeito de Ragdoll e ativa o animator.
     public void EnableAnimator()
     {
         animator.enabled = true;

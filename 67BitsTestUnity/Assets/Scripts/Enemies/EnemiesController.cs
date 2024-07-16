@@ -13,9 +13,9 @@ public class EnemiesController : MonoBehaviour, Idamageble
 
     public void TakeDamage(Transform targetTransform, int damage, float knockBackForce)
     {
-        int currentStackCount = stackingManager.enemiesTransform.Count;
+        int currentStackCount = stackingManager.enemiesTransform.Count - 1;
 
-        if (currentStackCount <= stackingManager.stackingLimit ) 
+        if (currentStackCount < stackingManager.stackingLimit ) 
         {
             StartCoroutine(StackingEnemies());
         }

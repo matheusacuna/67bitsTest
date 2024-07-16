@@ -15,7 +15,6 @@ namespace Player
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Enemies"))
             {
-                Debug.Log("touching");
                 anim.SetTrigger("basicAttack");
             }
         }
