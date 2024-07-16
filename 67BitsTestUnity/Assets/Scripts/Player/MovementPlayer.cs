@@ -1,6 +1,5 @@
 using UnityEngine;
-using UnityEngine.Windows;
-
+using Managers;
 
 namespace Player
 {

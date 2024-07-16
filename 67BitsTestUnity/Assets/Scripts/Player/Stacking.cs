@@ -2,13 +2,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-
 namespace Player
 {
     public class Stacking : MonoBehaviour
     {
         public GameObject[] children;
-        public List<Transform> cubes = new List<Transform>();
+        public List<Transform> enemiesTransform = new List<Transform>();
         public Transform stackingTransform;
         public float distance;
         public float swipeSpeed;
@@ -17,7 +16,7 @@ namespace Player
         void Start()
         {
             stackingTransform.rotation = Quaternion.Euler(-90, stackingTransform.eulerAngles.y, 90f);
-            cubes.Add(stackingTransform.transform);
+            enemiesTransform.Add(stackingTransform.transform);
         }
 
         private void Update()
@@ -27,12 +26,12 @@ namespace Player
 
         private void StackingEnemies()
         {
-            if(cubes.Count > 1)
+            if(enemiesTransform.Count > 1)
             {
-                for (int i = 1; i < cubes.Count; i++)
+                for (int i = 1; i < enemiesTransform.Count; i++)
                 {
-                    var firstEnemy = cubes.ElementAt(i - 1);
-                    var secondEnemy = cubes.ElementAt(i);
+                    var firstEnemy = enemiesTransform.ElementAt(i - 1);
+                    var secondEnemy = enemiesTransform.ElementAt(i);
 
                     // Ajustar a posição dos inimigos na costa do player.
                     secondEnemy.position = new Vector3(

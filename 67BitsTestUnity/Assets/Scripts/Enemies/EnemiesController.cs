@@ -46,9 +46,9 @@ public class EnemiesController : MonoBehaviour, Idamageble
         }
 
         gameObject.transform.parent = null;
-        stackingManager.cubes.Add(gameObject.transform);
+        stackingManager.enemiesTransform.Add(gameObject.transform);
 
-        if (stackingManager.cubes.Count > 1)
+        if (stackingManager.enemiesTransform.Count > 1)
         {
             gameObject.transform.rotation = Quaternion.Euler(-90, gameObject.transform.eulerAngles.y, 90);
         }

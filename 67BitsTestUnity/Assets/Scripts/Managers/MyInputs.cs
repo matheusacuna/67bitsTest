@@ -1,24 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MyInputs : MonoBehaviour
+namespace Managers
 {
-    private InputMap input;
-
-    public static MyInputs instance;
-
-    private void Awake()
+    public class MyInputs : MonoBehaviour
     {
-        instance = this;
+        private InputMap input;
 
-        input = new InputMap();
-        input.Player.Enable();
-    }
-    private void OnEnable() => input.Player.Enable();
+        public static MyInputs instance;
 
-    public static InputMap GetInput()
-    {
-        return instance.input;
+        private void Awake()
+        {
+            instance = this;
+
+            input = new InputMap();
+            input.Player.Enable();
+        }
+        private void OnEnable() => input.Player.Enable();
+
+        public static InputMap GetInput()
+        {
+            return instance.input;
+        }
     }
 }
