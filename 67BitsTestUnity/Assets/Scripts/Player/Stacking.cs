@@ -1,17 +1,19 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 namespace Player
 {
     public class Stacking : MonoBehaviour
     {
-        public GameObject[] children;
         public List<Transform> enemiesTransform = new List<Transform>();
         public Transform stackingTransform;
-        public float distance;
         public float swipeSpeed;
         public float rotationSpeed = 5f;
+        public int stackingLimit;
+        private int currentAmountStacking;
+        [SerializeField] private TextMeshProUGUI amountStacking;
 
         void Start()
         {
@@ -45,6 +47,12 @@ namespace Player
                     secondEnemy.rotation = Quaternion.Lerp(secondEnemy.rotation, targetRotation, rotationSpeed * Time.deltaTime);
                 }
             }
+        }
+
+        public void UpdateStackingAmountUI()
+        {
+            currentAmountStacking++;
+            amountStacking.text = $"{currentAmountStacking} / {stackingLimit}";
         }
     }
 }
