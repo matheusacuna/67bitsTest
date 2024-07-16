@@ -56,6 +56,7 @@ namespace Player
                 // Destrói o objeto
                 Destroy(lastEnemy.gameObject);
 
+                shopManager.IncrementMoney(10f);
                 stackingManager.DecrementStackingAmountUI();
             }
 
