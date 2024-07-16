@@ -1,12 +1,14 @@
 using UnityEngine;
 using MyUtilities;
 using System.Collections;
+using Player;
 
 public class EnemiesController : MonoBehaviour, Idamageble
 {
     [Header("Stacking Enemy Settings")]
     [SerializeField] Stacking stackingManager;
-    [SerializeField] public RagdollEnabler[] Ragdolls;
+    [SerializeField] private RagdollEnabler[] Ragdolls;
+    [SerializeField] private GameObject vfx; 
     public bool isAffected;
 
     public void TakeDamage(Transform targetTransform, int damage, float knockBackForce)
@@ -33,6 +35,10 @@ public class EnemiesController : MonoBehaviour, Idamageble
     public IEnumerator StackingEnemies()
     {
         yield return new WaitForSeconds(1);
+
+        vfx.SetActive(true);
+
+        GetComponent<BoxCollider>().enabled = false;
 
         foreach (RagdollEnabler ragdoll in Ragdolls)
         {

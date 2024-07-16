@@ -17,22 +17,8 @@ namespace Player
 
             if (obj != null)
             {
-                Debug.Log("obj is not null");
-                if (playerController != null)
-                {
-                    Debug.Log("playerController is not null");
-                    obj.TakeDamage(playerController.transform, damage, punchPlayer.forceKnockback);
-                }
-                else
-                {
-                    Debug.LogError("playerController is null");
-                }
+                obj.TakeDamage(playerController.transform, damage, punchPlayer.forceKnockback);
             }
-            else
-            {
-                Debug.LogError("obj is null");
-            }
-
         }
     }
 }
